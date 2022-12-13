@@ -4,6 +4,7 @@ data:
   PD_DELEGATOR_PROFILE_SCOPE_ENABLED: "true"
   PD_ENGINE_PUBLIC_HOSTNAME: "dataproxy.likemindsdemo.com"
   PD_ENGINE_PUBLIC_PORT: "1443"
+  PD_DELEGATOR_HTTPS_PORT: "1443"
   HTTPS_PORT: "1443"
   SERVER_PROFILE_PATH: serverProfile/pingdelegator
   SERVER_PROFILE_URL: https://github.com/lmc-inc/directorypoc.git
