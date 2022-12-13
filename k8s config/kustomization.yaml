@@ -6,7 +6,7 @@ resources:
 - ping-dataconsole
 - ping-datasync
 - ping-directory-proxy
+- ping-delegator
 #- pingfederate-admin
 #- pingfederate-engine
-#- ping-delegator
 - global-env.yaml
