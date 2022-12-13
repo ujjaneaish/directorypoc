@@ -137,8 +137,8 @@ dsconfig create-access-token-validator \
 
 dsconfig set-http-servlet-extension-prop \
     --extension-name "Delegated Admin"  \
-    --set access-token-scope:urn:pingidentity:directory-delegated-admin
-	--set access-token-validator:PingFederateValidator 
+    --set access-token-scope:urn:pingidentity:directory-delegated-admin \
+	--set access-token-validator:PingFederateValidator
 
 dsconfig set-connection-handler-prop \
     --handler-name "HTTPS Connection Handler"  \
