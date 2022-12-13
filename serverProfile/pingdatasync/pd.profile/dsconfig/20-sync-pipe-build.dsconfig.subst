@@ -25,7 +25,7 @@ dsconfig create-external-server \
     --type sun-ds  \
     --set "description:This server is old unix directory"  \
     --set server-host-name:20.204.14.254  \
-    --set server-port:1389  \
+    --set server-port:2389  \
     --set location:Docker  \
     --set "bind-dn:cn=Sync User,o=unix"  \
     --set password:AABPBIZpXujB2hsS1C4egAkeSwhwsONQLcU=  \
