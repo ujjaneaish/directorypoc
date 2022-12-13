@@ -8,9 +8,9 @@ metadata:
 spec:
   ports:
   - name: https
-    port: 9031
+    port: 1443
     protocol: TCP
-    targetPort: 1443
+    targetPort: 9031
   - name: pfadmin
     port: 9999
     protocol: TCP
