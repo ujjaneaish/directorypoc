@@ -127,18 +127,29 @@ dsconfig set-identity-mapper-prop \
     --add match-attribute:entryuuid
 	
 dsconfig create-access-token-validator \
-    --validator-name PingFederateValidator  \
-    --type ping-federate  \
+    --validator-name JWTTokenValidator  \
+    --type jwt  \
     --set "identity-mapper:Exact Match"  \
     --set enabled:true  \
     --set authorization-server:PingFederateInstance  \
-    --set client-id:pingdirectory  \
-    --set "client-secret:AAAyxcv2gdxF+S/bihH1Le5qcNx/OJ+W/XY=" 
+    --set jwks-endpoint-path:/ext/directoryjwks
+	
+dsconfig create-http-servlet-cross-origin-policy \
+    --policy-name CORS  \
+    --set "description:Delegator URL Cors"  \
+    --set cors-allowed-methods:GET  \
+    --set cors-allowed-methods:HEAD  \
+    --set cors-allowed-methods:PATCH  \
+    --set cors-allowed-methods:POST  \
+    --set cors-allowed-origins:https://delegator.likemindsdemo.com:1443  \
+    --set cors-allowed-origins:https://sso.likemindsdemo.com:1443  \
+    --set cors-allow-credentials:true 
 
 dsconfig set-http-servlet-extension-prop \
     --extension-name "Delegated Admin"  \
     --set access-token-scope:urn:pingidentity:directory-delegated-admin \
-	--set access-token-validator:PingFederateValidator
+	--set access-token-validator:JWTTokenValidator \
+	--set cross-origin-policy:CORS
 
 dsconfig set-connection-handler-prop \
     --handler-name "HTTPS Connection Handler"  \
