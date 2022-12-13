@@ -20,16 +20,6 @@ spec:
         app.kubernetes.io/name: pingdirectory
         clusterIdentifier: likeminds-pingdirectory
     spec:
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app.kubernetes.io/name
-                operator: In
-                values:
-                - pingdirectory
-            topologyKey: kubernetes.io/hostname
       containers:
       - envFrom:
         - configMapRef:
@@ -77,7 +67,7 @@ spec:
         resources:
           limits:
             cpu: 2
-            memory: 8Gi
+            memory: 4Gi
           requests:
             cpu: 50m
             memory: 2Gi

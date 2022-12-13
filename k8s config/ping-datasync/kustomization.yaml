@@ -5,3 +5,4 @@ resources:
 - configMap.yaml
 - deployment.yaml
 - headless-service.yaml
+- service.yaml
