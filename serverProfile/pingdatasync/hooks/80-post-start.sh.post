@@ -29,14 +29,14 @@ sleep 2
 #
 # Set the sync pipe at the beginning of the changelog
 #
-realtime-sync set-startpoint \
-    --end-of-changelog \
-    --pipe-name pingdirectory_source-to-pingdirectory_destination
+#realtime-sync set-startpoint \
+#    --end-of-changelog \
+#    --pipe-name pingdirectory_source-to-pingdirectory_destination
 
 #
 # Enable the sync pipe
 #
-dsconfig set-sync-pipe-prop \
-    --pipe-name pingdirectory_source-to-pingdirectory_destination  \
-    --set started:true \
-    --no-prompt
+#dsconfig set-sync-pipe-prop \
+#    --pipe-name pingdirectory_source-to-pingdirectory_destination  \
+#    --set started:true \
+#    --no-prompt
