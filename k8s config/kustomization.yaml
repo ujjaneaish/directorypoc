@@ -5,6 +5,7 @@ resources:
 - ping-directory
 - ping-dataconsole
 - ping-datasync
+- ping-directory-proxy
 #- pingfederate-admin
 #- pingfederate-engine
 #- ping-delegator
