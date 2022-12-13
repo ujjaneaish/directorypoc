@@ -8,17 +8,18 @@ metadata:
 spec:
   ports:
   - name: https
-    port: 443
+    port: 1443
     protocol: TCP
     targetPort: 1443
   - name: ldap
-    port: 389
+    port: 1389
     protocol: TCP
     targetPort: 1389
   - name: ldaps
-    port: 636
+    port: 1636
     protocol: TCP
     targetPort: 1636
   selector:
     app.kubernetes.io/instance: likeminds
     app.kubernetes.io/name: pingdirectory
+  type: LoadBalancer

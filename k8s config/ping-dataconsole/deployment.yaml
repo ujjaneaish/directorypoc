@@ -39,7 +39,7 @@ spec:
         - secretRef:
             name: likeminds-pingdataconsole-git-secret
             optional: true
-        image: pingidentity/pingdataconsole:2210
+        image: pingidentity/pingdataconsole:latest
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
