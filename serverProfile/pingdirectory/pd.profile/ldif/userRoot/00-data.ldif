@@ -40,7 +40,6 @@ objectClass: top
 objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
-changetype: add
 uid: praba
 cn: Prabhakaran
 sn: J
@@ -51,7 +50,6 @@ objectClass: top
 objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
-changetype: add
 uid: vikram
 cn: Vikram
 sn: Chandrasekaran
