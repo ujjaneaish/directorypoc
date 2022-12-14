@@ -172,7 +172,7 @@ dsconfig create-sync-class \
     --pipe-name pingdirectory_tm_source-to-odsee_tm_destination  \
     --class-name pd-to-tm-odsee-SyncClass  \
     --set include-base-dn:o=tm,${USER_BASE_DN}  \
-    --set "include-filter:(objectClass=person)"  \
+    --set "include-filter:(objectClass=*)"  \
     --set dn-map:pd_tm_to_odsee_tm  \
     --set auto-mapped-source-attribute:-all-  \
     --set attribute-synchronization-mode:all-attributes  \
@@ -184,7 +184,7 @@ dsconfig create-sync-class \
     --pipe-name pingdirectory_unix_source-to-odsee_unix_destination  \
     --class-name pd-to-unix-odsee-SyncClass  \
     --set include-base-dn:o=unix,${USER_BASE_DN}  \
-    --set "include-filter:(objectClass=person)"  \
+    --set "include-filter:(objectClass=*)"  \
     --set dn-map:pd_unix_to_odsee_unix  \
     --set auto-mapped-source-attribute:-all-  \
     --set attribute-synchronization-mode:all-attributes  \
@@ -196,7 +196,7 @@ dsconfig create-sync-class \
     --pipe-name odsee_tm_source-to-pingdirectory_tm_destination  \
     --class-name tm-odsee-to-pd-SyncClass  \
     --set include-base-dn:o=telus  \
-    --set "include-filter:(objectClass=person)"  \
+    --set "include-filter:(objectClass=*)"  \
     --set dn-map:odsee_tm_to_pd_tm  \
     --set auto-mapped-source-attribute:-all-  \
     --set attribute-synchronization-mode:all-attributes  \
@@ -209,7 +209,7 @@ dsconfig create-sync-class \
     --pipe-name odsee_unix_source-to-pingdirectory_unix_destination  \
     --class-name unix-odsee-to-pd-SyncClass  \
     --set include-base-dn:o=telus  \
-    --set "include-filter:(objectClass=person)"  \
+    --set "include-filter:(objectClass=*)"  \
     --set dn-map:odsee_unix_to_pd_unix  \
     --set auto-mapped-source-attribute:-all- \
     --set attribute-synchronization-mode:all-attributes  \
