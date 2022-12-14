@@ -9,15 +9,11 @@ dn: o=telus,${USER_BASE_DN}
 o: telus
 objectClass: organization
 objectClass: top
-objectClass: nisDomainObject
-objectClass: domain
 
 dn: o=tm,${USER_BASE_DN}
 o: tm
 objectClass: organization
 objectClass: top
-objectClass: nisDomainObject
-objectClass: domain
 
 dn: ou=people,${USER_BASE_DN}
 objectClass: top
