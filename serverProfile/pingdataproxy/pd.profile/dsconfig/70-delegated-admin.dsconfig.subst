@@ -119,7 +119,7 @@ dsconfig create-delegated-admin-resource-rights \
     --set admin-permission:delete  \
     --set admin-permission:manage-group-membership  \
     --set admin-permission:read  \
-	--set admin-permission:reset-password  \
+    --set admin-permission:reset-password  \
     --set admin-permission:update  \
     --set admin-permission:update-profile  \
     --set admin-permission:update  \
@@ -158,20 +158,3 @@ dsconfig set-http-servlet-extension-prop \
 dsconfig set-connection-handler-prop \
     --handler-name "HTTPS Connection Handler"  \
     --add "http-servlet-extension:Delegated Admin"
-	
-	
-dsconfig set-password-policy-prop \
-    --policy-name 'Default Password Policy'  \
-    --set 'max-password-age:12 w 6 d'  \
-    --set maximum-recent-login-history-successful-authentication-count:10 
-	
-dsconfig set-plugin-prop \
-    --plugin-name 'Modifiable Password Policy State Plugin'  \
-	--set base-dn:${USER_BASE_DN}  \
-    --set enabled:true
-	
-dsconfig set-virtual-attribute-prop \
-    --name 'Password Policy State JSON'  \
-    --set enabled:true  \
-    --set base-dn:${USER_BASE_DN}  \
-    --set require-explicit-request-by-name:true 
