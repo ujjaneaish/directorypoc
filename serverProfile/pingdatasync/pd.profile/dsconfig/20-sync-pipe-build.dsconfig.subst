@@ -5,7 +5,8 @@
 dsconfig set-trust-manager-provider-prop \
     --provider-name 'Blind Trust'  \
     --set enabled:true
-	
+
+#Create all external servers
 dsconfig create-external-server \
     --server-name odsee-tm  \
     --type sun-ds  \
@@ -41,18 +42,33 @@ dsconfig create-external-server \
     --set server-host-name:${PD_ENGINE_PRIVATE_HOSTNAME}  \
     --set server-port:${PD_ENGINE_PRIVATE_PORT_LDAPS}  \
     --set location:Docker  \
-    --set bind-dn:cn=sync  \
+    --set bind-dn:cn=sync,${USER_BASE_DN}  \
     --set "password:AADTd1b1gsrLh1fWvObKUK81uJ1VePV+pN4="  \
     --set connection-security:ssl  \
     --set key-manager-provider:Null  \
     --set "trust-manager-provider:Blind Trust"  \
     --set initial-connections:1  \
     --set max-connections:4
-	
+
+
+#CREATE ALL SYNC DESTINATIONS HERE############
+
 dsconfig create-sync-destination \
-    --destination-name pingdirectory_destination  \
+    --destination-name pingdirectory_base_destination  \
     --type ping-identity  \
     --set base-dn:${USER_BASE_DN}  \
+    --set server:pingdirectory
+
+dsconfig create-sync-destination \
+    --destination-name pingdirectory_tm_destination  \
+    --type ping-identity  \
+    --set base-dn:o=tm,${USER_BASE_DN}  \
+    --set server:pingdirectory
+
+dsconfig create-sync-destination \
+    --destination-name pingdirectory_unix_destination  \
+    --type ping-identity  \
+    --set base-dn:o=unix,${USER_BASE_DN}  \
     --set server:pingdirectory 
 	
 dsconfig create-sync-destination \
@@ -66,7 +82,9 @@ dsconfig create-sync-destination \
     --type sun-ds  \
     --set base-dn:o=telus  \
     --set server:odsee-unix 
-	
+
+#CREATE ALL SYNC SOURCES HERE	###################3
+
 dsconfig create-sync-source \
     --source-name odsee_tm_source  \
     --type sun-ds  \
@@ -100,18 +118,71 @@ dsconfig create-sync-source \
     --set server:pingdirectory  \
     --set use-changelog-batch-request:true 
 
+#CREATE ALL SYNC PIPES HERE#######################33
+
+#ODSEE-TM to PD SYNC PIPE
 dsconfig create-sync-pipe \
-    --pipe-name odsee_source-to-pingdirectory_destination  \
-    --set sync-source:odsee_source  \
-    --set sync-destination:pingdirectory_destination  \
+    --pipe-name odsee_tm_source-to-pingdirectory_destination  \
+    --set sync-source:odsee_tm_source  \
+    --set sync-destination:pingdirectory_tm_destination  \
     --set "change-detection-polling-interval:500 ms"  \
     --set num-worker-threads:1
+
+#ODSEE-UNIX to PD SYNC PIPE
+dsconfig create-sync-pipe \
+    --pipe-name odsee_unix_source-to-pingdirectory_unix_destination  \
+    --set sync-source:odsee_unix_source  \
+    --set sync-destination:pingdirectory_unix_destination  \
+    --set "change-detection-polling-interval:500 ms"  \
+    --set num-worker-threads:1
+
+# PD to ODSEE-TM SYNC PIPE
+dsconfig create-sync-pipe \
+    --pipe-name pingdirectory_tm_source-to-odsee_tm_destination  \
+    --set sync-source:pingdirectory_tm_source  \
+    --set sync-destination:odsee_tm_destination  \
+    --set "change-detection-polling-interval:500 ms"  \
+    --set num-worker-threads:1
+
+# PD to ODSEE-UNIX SYNC PIPE
+dsconfig create-sync-pipe \
+    --pipe-name pingdirectory_tm_source-to-odsee_unix_destination  \
+    --set sync-source:pingdirectory_unix_source  \
+    --set sync-destination:odsee_unix_destination  \
+    --set "change-detection-polling-interval:500 ms"  \
+    --set num-worker-threads:1
+
 
 dsconfig create-dn-map \
     --map-name odsee_to_pd  \
     --set 'from-dn-pattern:*,**,dc=example,dc=com'  \
     --set "to-dn-pattern:{1},{2},${USER_BASE_DN}"
-	
+
+#CREATE ALL SYNC CLASSES
+
+dsconfig create-sync-class \
+    --pipe-name pingdirectory_source-to-odsee_destination  \
+    --class-name pdUserSyncClass  \
+    --set include-base-dn:ou=people,${USER_BASE_DN}  \
+    --set "include-filter:(objectClass=person)"  \
+    --set dn-map:pd_to_odsee  \
+	--set attribute-map:OdseeUserAttributesMap \
+    --set auto-mapped-source-attribute:-none-  \
+    --set attribute-synchronization-mode:all-attributes  \
+    --set ignore-zero-length-values:true  \
+    --set creates-as-modifies:true
+
+dsconfig create-sync-class \
+    --pipe-name pingdirectory_source-to-odsee_destination  \
+    --class-name pdGroupSyncClass  \
+    --set evaluation-order-index:9998  \
+    --set include-base-dn:ou=groups,${USER_BASE_DN}  \
+    --set "include-filter:(objectClass=groupofuniqueName)"  \
+    --set dn-map:pd_to_odsee  \
+    --set auto-mapped-source-attribute:-all-  \
+	--set ignore-zero-length-values:true  \
+    --set creates-as-modifies:true
+
 dsconfig create-sync-class \
     --pipe-name odsee_source-to-pingdirectory_destination  \
     --class-name OdseeUserSyncClass  \
@@ -166,25 +237,3 @@ dsconfig create-attribute-mapping \
     --type direct  \
     --set from-attribute:cn
 
-dsconfig create-sync-class \
-    --pipe-name pingdirectory_source-to-odsee_destination  \
-    --class-name pdUserSyncClass  \
-    --set include-base-dn:ou=people,${USER_BASE_DN}  \
-    --set "include-filter:(objectClass=person)"  \
-    --set dn-map:pd_to_odsee  \
-	--set attribute-map:OdseeUserAttributesMap \
-    --set auto-mapped-source-attribute:-none-  \
-    --set attribute-synchronization-mode:all-attributes  \
-    --set ignore-zero-length-values:true  \
-    --set creates-as-modifies:true
-
-dsconfig create-sync-class \
-    --pipe-name pingdirectory_source-to-odsee_destination  \
-    --class-name pdGroupSyncClass  \
-    --set evaluation-order-index:9998  \
-    --set include-base-dn:ou=groups,${USER_BASE_DN}  \
-    --set "include-filter:(objectClass=groupofuniqueName)"  \
-    --set dn-map:pd_to_odsee  \
-    --set auto-mapped-source-attribute:-all-  \
-	--set ignore-zero-length-values:true  \
-    --set creates-as-modifies:true
