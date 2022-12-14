@@ -156,17 +156,3 @@ dsconfig set-connection-handler-prop \
     --add "http-servlet-extension:Delegated Admin"
     
     
-dsconfig set-virtual-attribute-prop \
-     --name "Password Policy State JSON" \
-     --set enabled:true \
-     --set require-explicit-request-by-name:true \
-     --set "filter:(objectClass=person)" \
-     --no-prompt
-     
-dsconfig set-plugin-prop \
-    --plugin-name 'Modifiable Password Policy State Plugin'  \
-    --set enabled:true  \
-    --set base-dn:${USER_BASE_DN}
-    
-    
- 
