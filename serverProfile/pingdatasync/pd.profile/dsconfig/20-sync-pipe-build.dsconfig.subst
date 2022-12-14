@@ -16,7 +16,7 @@ dsconfig create-external-server \
     --set server-port:${ODSEE_TM_PORT}  \
     --set location:${LOCATION}  \
     --set "bind-dn:cn=Sync User,o=telus"  \
-	--set "password:AADTd1b1gsrLh1fWvObKUK81uJ1VePV+pN4="  \
+    --set "password:AADTd1b1gsrLh1fWvObKUK81uJ1VePV+pN4="  \
     --set key-manager-provider:Null  \
     --set "trust-manager-provider:Blind Trust"  \
     --set initial-connections:1  \
@@ -163,7 +163,7 @@ dsconfig create-sync-class \
     --set include-base-dn:o=unix,${USER_BASE_DN}  \
     --set "include-filter:(objectClass=person)"  \
     --set dn-map:pd_unix_to_odsee_unix  \
-	--set auto-mapped-source-attribute:-all-  \
+    --set auto-mapped-source-attribute:-all-  \
     --set attribute-synchronization-mode:all-attributes  \
     --set ignore-zero-length-values:true  \
     --set creates-as-modifies:true
@@ -175,7 +175,7 @@ dsconfig create-sync-class \
     --set include-base-dn:o=telus  \
     --set "include-filter:(objectClass=person)"  \
     --set dn-map:odsee_tm_to_pd_tm  \
-	--set auto-mapped-source-attribute:-all-  \
+    --set auto-mapped-source-attribute:-all-  \
     --set attribute-synchronization-mode:all-attributes  \
     --set ignore-zero-length-values:true  \
     --set creates-as-modifies:true
@@ -188,14 +188,10 @@ dsconfig create-sync-class \
     --set include-base-dn:o=telus  \
     --set "include-filter:(objectClass=person)"  \
     --set dn-map:odsee_unix_to_pd_unix  \
-	--set auto-mapped-source-attribute:-all- \
+    --set auto-mapped-source-attribute:-all- \
     --set attribute-synchronization-mode:all-attributes  \
     --set ignore-zero-length-values:true  \
     --set creates-as-modifies:true
-
-################# CREATE ALL ATTRIBUTE MAPPINGS #################
-
-
 
 ################# CREATE ALL DN MAPPINGS #################
 
