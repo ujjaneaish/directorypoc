@@ -7,13 +7,13 @@ dsconfig set-trust-manager-provider-prop \
     --set enabled:true
 	
 dsconfig create-external-server \
-    --server-name odsee  \
+    --server-name odsee-tm  \
     --type sun-ds  \
     --set "description:This server is old ODSEE TM directory"  \
     --set server-host-name:${ODSEE_SERVER}  \
-    --set server-port:${ODSEE_PORT}  \
+    --set server-port:${ODSEE_TM_PORT}  \
     --set location:${LOCATION}  \
-    --set "bind-dn:cn=Sync User,dc=example,dc=com"  \
+    --set "bind-dn:cn=Sync User,o=telus"  \
 	--set "password:AADTd1b1gsrLh1fWvObKUK81uJ1VePV+pN4="  \
     --set key-manager-provider:Null  \
     --set "trust-manager-provider:Blind Trust"  \
@@ -21,13 +21,13 @@ dsconfig create-external-server \
     --set max-connections:4 
 	
 dsconfig create-external-server \
-    --server-name unixOdsee  \
+    --server-name odsee-unix  \
     --type sun-ds  \
     --set "description:This server is old unix directory"  \
-    --set server-host-name:20.204.14.254  \
-    --set server-port:2389  \
-    --set location:Docker  \
-    --set "bind-dn:cn=Sync User,o=unix"  \
+    --set server-host-name:${ODSEE_SERVER}  \
+    --set server-port:${ODSEE_UNIX_PORT}  \
+    --set location:${LOCATION}   \
+    --set "bind-dn:cn=Sync User,o=telus"  \
     --set password:AABPBIZpXujB2hsS1C4egAkeSwhwsONQLcU=  \
     --set key-manager-provider:Null  \
     --set "trust-manager-provider:Blind Trust"  \
@@ -56,33 +56,47 @@ dsconfig create-sync-destination \
     --set server:pingdirectory 
 	
 dsconfig create-sync-destination \
-    --destination-name odsee_destination  \
+    --destination-name odsee_tm_destination  \
     --type sun-ds  \
-    --set base-dn:dc=example,dc=com  \
-    --set server:odsee 
+    --set base-dn:o=telus  \
+    --set server:odsee-tm 
 	
 dsconfig create-sync-destination \
-    --destination-name unix_destination  \
+    --destination-name odsee_unix_destination  \
     --type sun-ds  \
-    --set base-dn:o=unix  \
-    --set server:unixOdsee 
+    --set base-dn:o=telus  \
+    --set server:odsee-unix 
 	
 dsconfig create-sync-source \
-    --source-name odsee_source  \
+    --source-name odsee_tm_source  \
     --type sun-ds  \
-    --set base-dn:dc=example,dc=com  \
-    --set server:odsee 
+    --set base-dn:o=telus   \
+    --set server:odsee-tm 
 	
 dsconfig create-sync-source \
-    --source-name unix_source  \
+    --source-name odsee_unix_source  \
     --type sun-ds  \
-    --set base-dn:o=unix  \
-    --set server:unixOdsee 
+    --set base-dn:o=telus  \
+    --set server:odsee-unix 
 	
 dsconfig create-sync-source \
-    --source-name pingdirectory_source  \
+    --source-name pingdirectory_base_source  \
     --type ping-identity  \
-    --set base-dn:dc=telus,dc=com  \
+    --set base-dn:dc=example,dc=com  \
+    --set server:pingdirectory  \
+    --set use-changelog-batch-request:true
+
+dsconfig create-sync-source \
+    --source-name pingdirectory_tm_source  \
+    --type ping-identity  \
+    --set base-dn:o=tm,dc=example,dc=com  \
+    --set server:pingdirectory  \
+    --set use-changelog-batch-request:true 
+
+dsconfig create-sync-source \
+    --source-name pingdirectory_unix_source  \
+    --type ping-identity  \
+    --set base-dn:o=unix,dc=example,dc=com  \
     --set server:pingdirectory  \
     --set use-changelog-batch-request:true 
 

@@ -5,8 +5,8 @@ ${BASE_ATTRIBUTE}: ${BASE_VALUE}
 aci: (targetattr!="userPassword")(version 3.0; acl "Allow anonymous read access for anyone"; allow (read,search,compare) userdn="ldap:///anyone";)
 aci: (targetattr="*")(version 3.0; acl "Allow users to update their own entries"; allow (write) userdn="ldap:///self";)
 
-dn: o=telus,${USER_BASE_DN}
-o: telus
+dn: o=unix,${USER_BASE_DN}
+o: unix
 objectClass: organization
 objectClass: top
 
