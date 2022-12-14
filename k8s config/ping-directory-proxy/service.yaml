@@ -19,3 +19,4 @@ spec:
     app.kubernetes.io/instance: likeminds
     app.kubernetes.io/name: pingdirectoryproxy
   type: LoadBalancer
+  externalTrafficPolicy: Local
