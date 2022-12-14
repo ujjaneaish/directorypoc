@@ -30,21 +30,6 @@ objectClass: top
 objectClass: organizationalUnit
 ou: groups
 
-dn: ou=UnixGroups,${USER_BASE_DN}
-objectClass: top
-objectClass: organizationalUnit
-ou: UnixGroups
-
-dn: cn=sync,${USER_BASE_DN}
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-objectClass: top
-sn: likeminds
-cn: sync
-userPassword: 2FederateM0re
-
-
 dn: uid=tuan,ou=serviceAccounts,${USER_BASE_DN}
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
