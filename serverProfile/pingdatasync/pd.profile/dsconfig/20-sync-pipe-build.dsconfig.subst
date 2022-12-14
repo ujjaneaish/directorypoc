@@ -6,7 +6,8 @@ dsconfig set-trust-manager-provider-prop \
     --provider-name 'Blind Trust'  \
     --set enabled:true
 
-#Create all external servers
+############ CREATE ALL EXTERNAL SERVERS HERE ############
+
 dsconfig create-external-server \
     --server-name odsee-tm  \
     --type sun-ds  \
@@ -29,7 +30,7 @@ dsconfig create-external-server \
     --set server-port:${ODSEE_UNIX_PORT}  \
     --set location:${LOCATION}   \
     --set "bind-dn:cn=Sync User,o=telus"  \
-    --set password:AABPBIZpXujB2hsS1C4egAkeSwhwsONQLcU=  \
+    --set "password:AABPBIZpXujB2hsS1C4egAkeSwhwsONQLcU="  \
     --set key-manager-provider:Null  \
     --set "trust-manager-provider:Blind Trust"  \
     --set initial-connections:1  \
@@ -51,13 +52,8 @@ dsconfig create-external-server \
     --set max-connections:4
 
 
-#CREATE ALL SYNC DESTINATIONS HERE############
+############ CREATE ALL SYNC DESTINATIONS HERE  ############
 
-dsconfig create-sync-destination \
-    --destination-name pingdirectory_base_destination  \
-    --type ping-identity  \
-    --set base-dn:${USER_BASE_DN}  \
-    --set server:pingdirectory
 
 dsconfig create-sync-destination \
     --destination-name pingdirectory_tm_destination  \
@@ -83,7 +79,7 @@ dsconfig create-sync-destination \
     --set base-dn:o=telus  \
     --set server:odsee-unix 
 
-#CREATE ALL SYNC SOURCES HERE	###################3
+################### CREATE ALL SYNC SOURCES HERE	###################
 
 dsconfig create-sync-source \
     --source-name odsee_tm_source  \
@@ -97,12 +93,6 @@ dsconfig create-sync-source \
     --set base-dn:o=telus  \
     --set server:odsee-unix 
 	
-dsconfig create-sync-source \
-    --source-name pingdirectory_base_source  \
-    --type ping-identity  \
-    --set base-dn:dc=example,dc=com  \
-    --set server:pingdirectory  \
-    --set use-changelog-batch-request:true
 
 dsconfig create-sync-source \
     --source-name pingdirectory_tm_source  \
@@ -118,11 +108,11 @@ dsconfig create-sync-source \
     --set server:pingdirectory  \
     --set use-changelog-batch-request:true 
 
-#CREATE ALL SYNC PIPES HERE#######################33
+################# CREATE ALL SYNC PIPES HERE #################
 
 #ODSEE-TM to PD SYNC PIPE
 dsconfig create-sync-pipe \
-    --pipe-name odsee_tm_source-to-pingdirectory_destination  \
+    --pipe-name odsee_tm_source-to-pingdirectory_tm_destination  \
     --set sync-source:odsee_tm_source  \
     --set sync-destination:pingdirectory_tm_destination  \
     --set "change-detection-polling-interval:500 ms"  \
@@ -146,94 +136,86 @@ dsconfig create-sync-pipe \
 
 # PD to ODSEE-UNIX SYNC PIPE
 dsconfig create-sync-pipe \
-    --pipe-name pingdirectory_tm_source-to-odsee_unix_destination  \
+    --pipe-name pingdirectory_unix_source-to-odsee_unix_destination  \
     --set sync-source:pingdirectory_unix_source  \
     --set sync-destination:odsee_unix_destination  \
     --set "change-detection-polling-interval:500 ms"  \
     --set num-worker-threads:1
 
+################# CREATE ALL SYNC CLASSES #################
 
-dsconfig create-dn-map \
-    --map-name odsee_to_pd  \
-    --set 'from-dn-pattern:*,**,dc=example,dc=com'  \
-    --set "to-dn-pattern:{1},{2},${USER_BASE_DN}"
-
-#CREATE ALL SYNC CLASSES
-
+# PD to ODSEE-TM SYNC PIPE CLASS
 dsconfig create-sync-class \
-    --pipe-name pingdirectory_source-to-odsee_destination  \
-    --class-name pdUserSyncClass  \
-    --set include-base-dn:ou=people,${USER_BASE_DN}  \
+    --pipe-name pingdirectory_tm_source-to-odsee_tm_destination  \
+    --class-name pd-to-tm-odsee-SyncClass  \
+    --set include-base-dn:o=tm,${USER_BASE_DN}  \
     --set "include-filter:(objectClass=person)"  \
-    --set dn-map:pd_to_odsee  \
-	--set attribute-map:OdseeUserAttributesMap \
-    --set auto-mapped-source-attribute:-none-  \
-    --set attribute-synchronization-mode:all-attributes  \
-    --set ignore-zero-length-values:true  \
-    --set creates-as-modifies:true
-
-dsconfig create-sync-class \
-    --pipe-name pingdirectory_source-to-odsee_destination  \
-    --class-name pdGroupSyncClass  \
-    --set evaluation-order-index:9998  \
-    --set include-base-dn:ou=groups,${USER_BASE_DN}  \
-    --set "include-filter:(objectClass=groupofuniqueName)"  \
-    --set dn-map:pd_to_odsee  \
-    --set auto-mapped-source-attribute:-all-  \
-	--set ignore-zero-length-values:true  \
-    --set creates-as-modifies:true
-
-dsconfig create-sync-class \
-    --pipe-name odsee_source-to-pingdirectory_destination  \
-    --class-name OdseeUserSyncClass  \
-    --set include-base-dn:ou=people,dc=example,dc=com  \
-    --set "include-filter:(objectClass=person)"  \
-    --set dn-map:odsee_to_pd  \
+    --set dn-map:pd_tm_to_odsee_tm  \
     --set auto-mapped-source-attribute:-all-  \
     --set attribute-synchronization-mode:all-attributes  \
     --set ignore-zero-length-values:true  \
     --set creates-as-modifies:true
 
+# PD to ODSEE-UNIX SYNC PIPE CLASS
 dsconfig create-sync-class \
-    --pipe-name odsee_source-to-pingdirectory_destination  \
-    --class-name OdseeGroupSyncClass  \
-    --set evaluation-order-index:9998  \
-    --set include-base-dn:ou=groups,dc=example,dc=com  \
-    --set "include-filter:(objectClass=groupofuniqueName)"  \
-    --set dn-map:odsee_to_pd  \
-    --set auto-mapped-source-attribute:-all-  \
-	--set ignore-zero-length-values:true  \
+    --pipe-name pingdirectory_unix_source-to-odsee_unix_destination  \
+    --class-name pd-to-unix-odsee-SyncClass  \
+    --set include-base-dn:o=unix,${USER_BASE_DN}  \
+    --set "include-filter:(objectClass=person)"  \
+    --set dn-map:pd_unix_to_odsee_unix  \
+	--set auto-mapped-source-attribute:-all-  \
+    --set attribute-synchronization-mode:all-attributes  \
+    --set ignore-zero-length-values:true  \
     --set creates-as-modifies:true
 
-dsconfig create-sync-pipe \
-    --pipe-name pingdirectory_source-to-odsee_destination  \
-    --set started:true  \
-    --set sync-source:pingdirectory_source  \
-    --set sync-destination:odsee_destination
+# ODSEE-TM to PD SYNC PIPE CLASS
+dsconfig create-sync-class \
+    --pipe-name odsee_tm_source-to-pingdirectory_tm_destination  \
+    --class-name tm-odsee-to-pd-SyncClass  \
+    --set include-base-dn:o=telus  \
+    --set "include-filter:(objectClass=person)"  \
+    --set dn-map:odsee_tm_to_pd_tm  \
+	--set auto-mapped-source-attribute:-all-  \
+    --set attribute-synchronization-mode:all-attributes  \
+    --set ignore-zero-length-values:true  \
+    --set creates-as-modifies:true
+
+
+# ODSEE-UNIX to PD SYNC PIPE CLASS
+dsconfig create-sync-class \
+    --pipe-name odsee_unix_source-to-pingdirectory_unix_destination  \
+    --class-name unix-odsee-to-pd-SyncClass  \
+    --set include-base-dn:o=telus  \
+    --set "include-filter:(objectClass=person)"  \
+    --set dn-map:odsee_unix_to_pd_unix  \
+	--set auto-mapped-source-attribute:-all- \
+    --set attribute-synchronization-mode:all-attributes  \
+    --set ignore-zero-length-values:true  \
+    --set creates-as-modifies:true
+
+################# CREATE ALL ATTRIBUTE MAPPINGS #################
+
+
+
+################# CREATE ALL DN MAPPINGS #################
 
 dsconfig create-dn-map \
-    --map-name pd_to_odsee  \
-    --set 'from-dn-pattern:*,**,${USER_BASE_DN}'  \
-    --set "to-dn-pattern:{1},{2},dc=example,dc=com"
+    --map-name pd_tm_to_odsee_tm  \
+    --set 'from-dn-pattern:**,o=tm,${USER_BASE_DN}'  \
+    --set "to-dn-pattern:{1},o=telus"
 
-dsconfig create-attribute-map \
-    --map-name OdseeUserAttributesMap
-	
-dsconfig create-attribute-mapping \
-    --map-name OdseeUserAttributesMap  \
-    --mapping-name sn  \
-    --type direct  \
-    --set from-attribute:sn
+dsconfig create-dn-map \
+    --map-name odsee_tm_to_pd_tm  \
+    --set 'from-dn-pattern:**,o=telus'  \
+    --set "to-dn-pattern:{1},o=tm,${USER_BASE_DN}"
 
-dsconfig create-attribute-mapping \
-    --map-name OdseeUserAttributesMap  \
-    --mapping-name givenName  \
-    --type direct  \
-    --set from-attribute:givenName
+dsconfig create-dn-map \
+    --map-name pd_unix_to_odsee_unix  \
+    --set 'from-dn-pattern:**,o=unix,${USER_BASE_DN}'  \
+    --set "to-dn-pattern:{1},o=telus"
 
-dsconfig create-attribute-mapping \
-    --map-name OdseeUserAttributesMap  \
-    --mapping-name cn  \
-    --type direct  \
-    --set from-attribute:cn
+dsconfig create-dn-map \
+    --map-name odsee_unix_to_pd_unix  \
+    --set 'from-dn-pattern:**,o=telus'  \
+    --set "to-dn-pattern:{1},o=unix,${USER_BASE_DN}"
 
