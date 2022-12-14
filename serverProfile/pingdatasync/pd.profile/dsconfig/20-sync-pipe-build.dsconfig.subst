@@ -107,6 +107,29 @@ dsconfig create-sync-source \
     --set base-dn:o=unix,dc=example,dc=com  \
     --set server:pingdirectory  \
     --set use-changelog-batch-request:true 
+    
+################# CREATE ALL DN MAPPINGS #################
+
+dsconfig create-dn-map \
+    --map-name pd_tm_to_odsee_tm  \
+    --set 'from-dn-pattern:**,o=tm,${USER_BASE_DN}'  \
+    --set "to-dn-pattern:{1},o=telus"
+
+dsconfig create-dn-map \
+    --map-name odsee_tm_to_pd_tm  \
+    --set 'from-dn-pattern:**,o=telus'  \
+    --set "to-dn-pattern:{1},o=tm,${USER_BASE_DN}"
+
+dsconfig create-dn-map \
+    --map-name pd_unix_to_odsee_unix  \
+    --set 'from-dn-pattern:**,o=unix,${USER_BASE_DN}'  \
+    --set "to-dn-pattern:{1},o=telus"
+
+dsconfig create-dn-map \
+    --map-name odsee_unix_to_pd_unix  \
+    --set 'from-dn-pattern:**,o=telus'  \
+    --set "to-dn-pattern:{1},o=unix,${USER_BASE_DN}"
+
 
 ################# CREATE ALL SYNC PIPES HERE #################
 
@@ -192,26 +215,3 @@ dsconfig create-sync-class \
     --set attribute-synchronization-mode:all-attributes  \
     --set ignore-zero-length-values:true  \
     --set creates-as-modifies:true
-
-################# CREATE ALL DN MAPPINGS #################
-
-dsconfig create-dn-map \
-    --map-name pd_tm_to_odsee_tm  \
-    --set 'from-dn-pattern:**,o=tm,${USER_BASE_DN}'  \
-    --set "to-dn-pattern:{1},o=telus"
-
-dsconfig create-dn-map \
-    --map-name odsee_tm_to_pd_tm  \
-    --set 'from-dn-pattern:**,o=telus'  \
-    --set "to-dn-pattern:{1},o=tm,${USER_BASE_DN}"
-
-dsconfig create-dn-map \
-    --map-name pd_unix_to_odsee_unix  \
-    --set 'from-dn-pattern:**,o=unix,${USER_BASE_DN}'  \
-    --set "to-dn-pattern:{1},o=telus"
-
-dsconfig create-dn-map \
-    --map-name odsee_unix_to_pd_unix  \
-    --set 'from-dn-pattern:**,o=telus'  \
-    --set "to-dn-pattern:{1},o=unix,${USER_BASE_DN}"
-
