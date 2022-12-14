@@ -43,7 +43,7 @@ dsconfig create-external-server \
     --set server-host-name:${PD_ENGINE_PRIVATE_HOSTNAME}  \
     --set server-port:${PD_ENGINE_PRIVATE_PORT_LDAPS}  \
     --set location:Docker  \
-    --set bind-dn:cn=sync,${USER_BASE_DN}  \
+    --set bind-dn:cn=sync  \
     --set "password:AADTd1b1gsrLh1fWvObKUK81uJ1VePV+pN4="  \
     --set connection-security:ssl  \
     --set key-manager-provider:Null  \
