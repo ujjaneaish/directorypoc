@@ -13,13 +13,14 @@ dsconfig create-rest-resource-type \
     --set structural-ldap-objectclass:groupOfUniqueNames  \
     --set search-base-dn:${USER_BASE_DN}  \
     --set parent-dn:ou=Groups,${USER_BASE_DN}  \
+	--set create-rdn-attribute-type:cn  \
     --set display-name:Groups  \
     --set 'search-filter-pattern:(cn=*%%*)'  \
     --set primary-display-attribute-type:cn 
 
 dsconfig create-delegated-admin-attribute \
     --type-name groups  \
-    --attribute-type cn  \
+    --attribute-type 	  \
     --set display-name:Group 
 
 dsconfig create-delegated-admin-attribute \
@@ -42,6 +43,41 @@ dsconfig create-delegated-admin-resource-rights \
     --set admin-permission:read  \
     --set admin-permission:update  \
     --set admin-scope:all-resources-in-base 
+	
+	
+dsconfig create-rest-resource-type \
+    --type-name ApplicationGroups  \
+    --type group  \
+    --set enabled:true  \
+    --set resource-endpoint:ApplicationGroups  \
+    --set structural-ldap-objectclass:groupOfUniqueNames  \
+    --set search-base-dn:ou=groups,ou=teamMembers,ou=internal,o=tm,${USER_BASE_DN} \
+    --set parent-dn:ou=applicationgroups,ou=groups,ou=teamMembers,ou=internal,o=tm,${USER_BASE_DN}  \
+    --set create-rdn-attribute-type:cn  \
+    --set "display-name:Application Group"  \
+    --set 'search-filter-pattern:(cn=*%%*)'  \
+    --set primary-display-attribute-type:cn 
+
+dsconfig create-delegated-admin-attribute \
+    --type-name ApplicationGroups  \
+    --attribute-type cn  \
+    --set display-name:Name
+
+dsconfig create-delegated-admin-attribute \
+    --type-name ApplicationGroups  \
+    --attribute-type description  \
+    --set display-name:Description 
+
+dsconfig create-delegated-admin-resource-rights \
+    --rights-name "Delegated Admin Groups"  \
+    --rest-resource-type ApplicationGroups  \
+    --set enabled:true  \
+    --set admin-permission:create  \
+    --set admin-permission:manage-group-membership  \
+    --set admin-permission:read  \
+    --set admin-permission:update  \
+    --set admin-permission:update-profile  \
+    --set admin-scope:all-resources-in-base	
 
 dsconfig create-rest-resource-type \
     --type-name users  \
@@ -49,10 +85,12 @@ dsconfig create-rest-resource-type \
     --set enabled:true  \
     --set resource-endpoint:users  \
     --set structural-ldap-objectclass:inetOrgPerson  \
+    --set auxiliary-ldap-objectclass:inetUser  \
     --set search-base-dn:${USER_BASE_DN}  \
     --set parent-dn:ou=people,${USER_BASE_DN}  \
+	--set create-rdn-attribute-type:uid  \
     --set display-name:Users  \
-    --set search-filter-pattern:(|(cn=*%%*)(mail=%%*)(uid=%%*)(sn=*%%*))  \
+    --set 'search-filter-pattern:(|(cn=*%%*)(mail=%%*)(uid=%%*)(sn=*%%*))'  \
     --set primary-display-attribute-type:cn 
 	
 dsconfig create-delegated-admin-attribute \
@@ -88,6 +126,11 @@ dsconfig create-delegated-admin-attribute \
     --attribute-type uid  \
     --set 'display-name:User ID'  \
     --set display-order-index:4 
+
+dsconfig create-delegated-admin-attribute \
+    --type-name users  \
+    --attribute-type inetUserStatus  \
+    --set display-name:inetUserStatus
 	
 dsconfig create-delegated-admin-resource-rights \
     --rights-name "Delegated Admin Groups"  \
