@@ -139,7 +139,8 @@ dsconfig create-sync-pipe \
     --set sync-source:odsee_tm_source  \
     --set sync-destination:pingdirectory_tm_destination  \
     --set "change-detection-polling-interval:500 ms"  \
-    --set num-worker-threads:1
+    --set num-worker-threads:1  \
+	--set started:true 
 
 #ODSEE-UNIX to PD SYNC PIPE
 dsconfig create-sync-pipe \
@@ -147,7 +148,8 @@ dsconfig create-sync-pipe \
     --set sync-source:odsee_unix_source  \
     --set sync-destination:pingdirectory_unix_destination  \
     --set "change-detection-polling-interval:500 ms"  \
-    --set num-worker-threads:1
+    --set num-worker-threads:1  \
+	--set started:true 
 
 # PD to ODSEE-TM SYNC PIPE
 dsconfig create-sync-pipe \
@@ -155,7 +157,8 @@ dsconfig create-sync-pipe \
     --set sync-source:pingdirectory_tm_source  \
     --set sync-destination:odsee_tm_destination  \
     --set "change-detection-polling-interval:500 ms"  \
-    --set num-worker-threads:1
+    --set num-worker-threads:1  \
+	--set started:true 
 
 # PD to ODSEE-UNIX SYNC PIPE
 dsconfig create-sync-pipe \
@@ -163,7 +166,8 @@ dsconfig create-sync-pipe \
     --set sync-source:pingdirectory_unix_source  \
     --set sync-destination:odsee_unix_destination  \
     --set "change-detection-polling-interval:500 ms"  \
-    --set num-worker-threads:1
+    --set num-worker-threads:1  \
+	--set started:true 
 
 ################# CREATE ALL SYNC CLASSES #################
 
