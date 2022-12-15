@@ -20,7 +20,7 @@ dsconfig create-rest-resource-type \
 
 dsconfig create-delegated-admin-attribute \
     --type-name groups  \
-    --attribute-type 	  \
+    --attribute-type cn  \
     --set display-name:Group 
 
 dsconfig create-delegated-admin-attribute \
