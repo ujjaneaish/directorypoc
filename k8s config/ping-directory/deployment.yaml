@@ -7,7 +7,7 @@ metadata:
   name: likeminds-pingdirectory
 spec:
   podManagementPolicy: OrderedReady
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/instance: likeminds
@@ -36,8 +36,8 @@ spec:
         - secretRef:
             name: likeminds-pingdirectory-git-secret
             optional: true
-        image: pingidentity/pingdirectory:latest
-        imagePullPolicy: IfNotPresent
+        image: pingidentity/pingdirectory:2212-9.2.0.0
+        imagePullPolicy: Always
         livenessProbe:
           exec:
             command:
@@ -70,7 +70,7 @@ spec:
             memory: 4Gi
           requests:
             cpu: 50m
-            memory: 2Gi
+            memory: 4Gi
         startupProbe:
           exec:
             command:

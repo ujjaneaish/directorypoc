@@ -3,9 +3,10 @@ data:
   CLUSTER_BIND_ADDRESS: NON_LOOPBACK
   CLUSTER_NAME: likeminds
   OPERATIONAL_MODE: STANDALONE
-  PF_ADMIN_PUBLIC_BASEURL: https://sso.likemindsdemo.com:1443
+#  PF_ADMIN_PUBLIC_BASEURL: https://sso.likemindsdemo.com:1443
   SERVER_PROFILE_PATH: serverProfile/pingfederate
   SERVER_PROFILE_URL: https://github.com/lmc-inc/directorypoc.git
+  PING_IDENTITY_ACCEPT_EULA: "yes"
 kind: ConfigMap
 metadata:
   labels:
