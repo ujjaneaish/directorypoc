@@ -55,6 +55,8 @@ spec:
           name: https
         - containerPort: 9999
           name: pfadmin
+        - containerPort: 8787
+          name: debugport
         readinessProbe:
           exec:
             command:
