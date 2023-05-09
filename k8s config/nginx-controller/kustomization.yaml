@@ -1,0 +1,12 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+resources:
+- service-account.yaml
+- snippet-configmap.yaml
+- cluster-roles-and-bindings.yaml
+- loadbalancer-service.yaml
+- ingress-class.yaml
+- validate-webhook.yaml
+- webhook-service.yaml
+- webhook-daemonset.yaml

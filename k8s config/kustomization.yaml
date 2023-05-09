@@ -8,4 +8,5 @@ resources:
 - ping-directory-proxy
 - ping-delegator
 - pingfederate
+- nginx-controller
 - global-env.yaml

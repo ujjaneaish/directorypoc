@@ -5,4 +5,7 @@ resources:
 - configMap.yaml
 - deployment.yaml
 - headless-service.yaml
-- service.yaml
+- ingress.yaml
+- devops-key.yaml
+#Testing the Nginx Ingress controller
+# - service.yaml
