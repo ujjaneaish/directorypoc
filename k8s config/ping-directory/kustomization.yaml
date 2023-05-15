@@ -6,3 +6,5 @@ resources:
 - deployment.yaml
 - headless-service.yaml
 - service.yaml
+- devops-eval-key.yaml
+- global-env.yaml
