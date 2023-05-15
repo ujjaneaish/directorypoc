@@ -36,7 +36,7 @@ spec:
         - secretRef:
             name: likeminds-pingdirectory-git-secret
             optional: true
-        image: pingidentity/pingdirectory:2212-9.2.0.0
+        image: pingidentity/pingdirectory:latest
         imagePullPolicy: Always
         livenessProbe:
           exec:
