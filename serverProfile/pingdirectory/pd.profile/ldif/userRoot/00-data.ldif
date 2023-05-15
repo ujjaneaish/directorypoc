@@ -60,6 +60,56 @@ cn: Vikram
 sn: Chandrasekaran
 userPassword: 2FederateM0re
 
+dn: uid=alex,ou=serviceAccounts,${USER_BASE_DN}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: alex
+cn: Alex
+sn: Johnson
+userPassword: 2FederateM0re5
+
+dn: uid=sophia,ou=serviceAccounts,${USER_BASE_DN}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: sophia
+cn: Sophia
+sn: Anderson
+userPassword: 2FederateM0re6
+
+dn: uid=david,ou=serviceAccounts,${USER_BASE_DN}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: david
+cn: David
+sn: Smithson
+userPassword: 2FederateM0re7
+
+dn: uid=lucy,ou=serviceAccounts,${USER_BASE_DN}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: lucy
+cn: Lucy
+sn: Williams
+userPassword: 2FederateM0re8
+
+dn: uid=michael,ou=serviceAccounts,${USER_BASE_DN}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: michael
+cn: Michael
+sn: Davis
+userPassword: 2FederateM0re9
+
 
 dn: cn=delegatedadmin,ou=Groups,${USER_BASE_DN}
 objectClass: groupOfUniqueNames
