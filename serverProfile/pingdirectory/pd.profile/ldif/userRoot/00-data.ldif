@@ -60,136 +60,56 @@ cn: Vikram
 sn: Chandrasekaran
 userPassword: 2FederateM0re
 
-dn: uid=aaron1,ou=serviceAccounts,dc=example,dc=com
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
+dn: uid=alex,ou=serviceAccounts,${USER_BASE_DN}
 objectClass: top
-uid: aaron1
-sn: miller
-cn: aaron1
-userPassword: 2FederateM0re1
-
-dn: uid=abigail1,ou=serviceAccounts,dc=example,dc=com
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
 objectClass: person
-objectClass: top
-uid: abigail1
-sn: jones
-cn: abigail1
-userPassword: 2FederateM0re1
-
-dn: uid=adam1,ou=serviceAccounts,dc=example,dc=com
-objectClass: inetOrgPerson
 objectClass: organizationalPerson
-objectClass: person
-objectClass: top
-uid: adam1
-sn: smith
-cn: adam1
-userPassword: 2FederateM0re1
-
-dn: uid=adrian1,ou=serviceAccounts,dc=example,dc=com
 objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-objectClass: top
-uid: adrian1
-sn: lee
-cn: adrian1
-userPassword: 2FederateM0re1
+uid: alex
+cn: Alex
+sn: Johnson
+userPassword: 2FederateM0re5
 
-dn: uid=angela1,ou=serviceAccounts,dc=example,dc=com
+dn: uid=sophia,ou=serviceAccounts,${USER_BASE_DN}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
 objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
+uid: sophia
+cn: Sophia
+sn: Anderson
+userPassword: 2FederateM0re6
+
+dn: uid=david,ou=serviceAccounts,${USER_BASE_DN}
 objectClass: top
-uid: angela1
-sn: johnson
-cn: angela1
-userPassword: 2FederateM0re1
-
-
-dn: uid=zack249,ou=serviceAccounts,dc=example,dc=com
+objectClass: person
+objectClass: organizationalPerson
 objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-objectClass: top
-uid: zack249
-sn: miller
-cn: zack249
-userPassword: 2FederateM0re249
+uid: david
+cn: David
+sn: Smithson
+userPassword: 2FederateM0re7
 
-dn: uid: zara249,ou=serviceAccounts,dc=example,dc=com
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
+dn: uid=lucy,ou=serviceAccounts,${USER_BASE_DN}
 objectClass: top
-uid: zara249
-sn: jones
-cn: zara249
-userPassword: 2FederateM0re249
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: lucy
+cn: Lucy
+sn: Williams
+userPassword: 2FederateM0re8
 
-dn: uid: zeb249,ou=serviceAccounts,dc=example,dc=com
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
+dn: uid=michael,ou=serviceAccounts,${USER_BASE_DN}
 objectClass: top
-uid: zeb249
-sn: smith
-cn: zeb249
-userPassword: 2FederateM0re249
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+uid: michael
+cn: Michael
+sn: Davis
+userPassword: 2FederateM0re9
 
-dn: uid=aaron250,ou=serviceAccounts,dc=example,dc=com
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-objectClass: top
-uid: aaron250
-sn: miller
-cn: aaron250
-userPassword: 2FederateM0re250
-
-dn: uid=abigail250,ou=serviceAccounts,dc=example,dc=com
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-objectClass: top
-uid: abigail250
-sn: jones
-cn: abigail250
-userPassword: 2FederateM0re250
-
-dn: uid=adam250,ou=serviceAccounts,dc=example,dc=com
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-objectClass: top
-uid: adam250
-sn: smith
-cn: adam250
-userPassword: 2FederateM0re250
-
-dn: uid=adrian250,ou=serviceAccounts,dc=example,dc=com
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-objectClass: top
-uid: adrian250
-sn: lee
-cn: adrian250
-userPassword: 2FederateM0re250
-
-dn: uid=angela250,ou=serviceAccounts,dc=example,dc=com
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-objectClass: top
-uid: angela250
-sn: johnson
-cn: angela250
-userPassword: 2FederateM0re250
 
 dn: cn=delegatedadmin,ou=Groups,${USER_BASE_DN}
 objectClass: groupOfUniqueNames
