@@ -9,15 +9,9 @@ data:
   SERVER_PROFILE_PATH: serverProfile/pingdirectory
   SERVER_PROFILE_URL: https://github.com/lmc-inc/directorypoc.git
   USER_BASE_DN: "dc=example,dc=com"
-  PING_IDENTITY_ACCEPT_EULA: "YES"
-  SERVER_PROFILE_UPDATE: "true"
-  BASE_CLASS: "dcObject"
-  BASE_ATTRIBUTE: "dc"
-  BASE_VALUE: "example"
 kind: ConfigMap
 metadata:
   labels:
     app.kubernetes.io/instance: likeminds
     app.kubernetes.io/name: pingdirectory
   name: likeminds-pingdirectory-env-vars
-  
