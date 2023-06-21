@@ -50,7 +50,7 @@ cn: Prabhakaran
 sn: J
 userPassword: 2FederateM0re
 
-dn: uid=vikram,ou=serviceAccounts,${USER_BASE_DN}
+dn: uid=vikrams,ou=serviceAccounts,${USER_BASE_DN}
 objectClass: top
 objectClass: person
 objectClass: organizationalPerson
@@ -60,7 +60,7 @@ cn: Vikram
 sn: Chandrasekaran
 userPassword: 2FederateM0re
 
-dn: uid=Aishwarya,ou=serviceAccounts,${USER_BASE_DN}
+dn: uid=aishwarya,ou=serviceAccounts,${USER_BASE_DN}
 objectClass: top
 objectClass: person
 objectClass: organizationalPerson
