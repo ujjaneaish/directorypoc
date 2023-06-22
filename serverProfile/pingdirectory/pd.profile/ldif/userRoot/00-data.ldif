@@ -65,6 +65,6 @@ dn: cn=delegatedadmin,ou=Groups,${USER_BASE_DN}
 objectClass: groupOfUniqueNames
 objectClass: top
 cn: delegatedadmin
-uniqueMember: uid=praba,ou=serviceAccounts,dc=example,dc=com
 uniqueMember: uid=tuan,ou=serviceAccounts,dc=example,dc=com
+uniqueMember: uid=aishwarya,ou=serviceAccounts,dc=example,dc=com
 uniqueMember: uid=vikram,ou=serviceAccounts,dc=example,dc=com
