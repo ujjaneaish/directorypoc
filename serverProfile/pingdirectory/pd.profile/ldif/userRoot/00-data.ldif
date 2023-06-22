@@ -10,67 +10,6 @@ objectClass: top
 objectClass: organizationalUnit
 ou: internal
 
-dn: ou=teamMembers,ou=internal,${USER_BASE_DN}
-objectClass: top
-objectClass: organizationalUnit
-ou: teamMembers
-
-dn: ou=groups,ou=teamMembers,ou=internal,${USER_BASE_DN}
-objectClass: top
-objectClass: organizationalUnit
-ou: groups
-
-dn: ou=people,ou=teamMembers,ou=internal,${USER_BASE_DN}
-objectClass: top
-objectClass: organizationalUnit
-ou: people
-
-dn: ou=systems,ou=internal,${USER_BASE_DN}
-objectClass: top
-objectClass: organizationalUnit
-ou: systems
-
-dn: ou=groups,ou=systems,ou=internal,${USER_BASE_DN}
-objectClass: top
-objectClass: organizationalUnit
-ou: groups
-
-dn: ou=people,ou=systems,ou=internal,${USER_BASE_DN}
-objectClass: top
-objectClass: organizationalUnit
-ou: people
-
-dn: ou=certs,ou=systems,ou=internal,${USER_BASE_DN}
-objectClass: top
-objectClass: organizationalUnit
-ou: certs
-
-
-dn: ou=vendors,ou=internal,${USER_BASE_DN}
-objectClass: top
-objectClass: organizationalUnit
-ou: vendors
-
-dn: ou=groups,ou=vendors,ou=internal,${USER_BASE_DN}
-objectClass: top
-objectClass: organizationalUnit
-ou: groups
-
-dn: ou=people,ou=vendors,ou=internal,${USER_BASE_DN}
-objectClass: top
-objectClass: organizationalUnit
-ou: people
-
-dn: ou=netGroup,ou=internal,${USER_BASE_DN}
-objectClass: top
-objectClass: organizationalUnit
-ou: netGroup
-
-dn: ou=Sudoers,ou=internal,${USER_BASE_DN}
-objectClass: top
-objectClass: organizationalUnit
-ou: Sudoers
-
 dn: ou=serviceAccounts,${USER_BASE_DN}
 objectClass: top
 objectClass: organizationalUnit
