@@ -60,15 +60,6 @@ cn: Vikram
 sn: Chandrasekaran
 userPassword: 2FederateM0re
 
-dn: uid=aishwarya,ou=serviceAccounts,${USER_BASE_DN}
-objectClass: top
-objectClass: person
-objectClass: organizationalPerson
-objectClass: inetOrgPerson
-uid: Aishwarya
-cn: Aishwarya
-sn: Ujjane
-userPassword: 2FederateM0re
 
 dn: cn=delegatedadmin,ou=Groups,${USER_BASE_DN}
 objectClass: groupOfUniqueNames
