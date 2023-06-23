@@ -10,10 +10,7 @@ objectClass: top
 objectClass: organizationalUnit
 ou: internal
 
-dn: ou=systems,ou=internal,${USER_BASE_DN}
-objectClass: top
-objectClass: organizationalUnit
-ou: systems
+
 
 dn: ou=serviceAccounts,${USER_BASE_DN}
 objectClass: top
