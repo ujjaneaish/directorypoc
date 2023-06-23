@@ -4,3 +4,8 @@ objectClass: organization
 o: telus
 aci: (targetattr!="userPassword")(version 3.0; acl "Allow anonymous read access for anyone"; allow (read,search,compare) userdn="ldap:///anyone";)
 aci: (targetattr="*")(version 3.0; acl "Allow users to update their own entries"; allow (write) userdn="ldap:///self";)
+
+dn: ou=internal,o=telus
+objectClass: top
+objectClass: organizationalUnit
+ou: internal
