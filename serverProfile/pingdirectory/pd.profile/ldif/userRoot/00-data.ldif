@@ -15,7 +15,7 @@ objectClass: top
 objectClass: organizationalUnit
 ou: internal
 
-dn: ou=teamMembers,ou=internal,o=telus,${USER_BASE_DN}
+dn: ou=teamMembers,o=telus,${USER_BASE_DN}
 objectClass: top
 objectClass: organizationalUnit
 ou: teamMembers
