@@ -10,10 +10,15 @@ o: telus
 objectClass: organization
 objectClass: top
 
-dn: ou=groups,ou=teamMembers,ou=internal,o=telus,${USER_BASE_DN}
+dn: ou=internal,o=telus,${USER_BASE_DN}
 objectClass: top
 objectClass: organizationalUnit
-ou: groups
+ou: internal
+
+dn: ou=systems,ou=internal,o=telus,${USER_BASE_DN}
+objectClass: top
+objectClass: organizationalUnit
+ou: systems
 
 dn: ou=serviceAccounts,${USER_BASE_DN}
 objectClass: top
