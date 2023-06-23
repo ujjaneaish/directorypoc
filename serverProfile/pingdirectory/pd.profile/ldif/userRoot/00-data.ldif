@@ -15,6 +15,11 @@ o: tm
 objectClass: organization
 objectClass: top
 
+dn: ou=internal,${USER_BASE_DN}
+objectClass: top
+objectClass: organizationalUnit
+ou: internal
+
 dn: ou=people,${USER_BASE_DN}
 objectClass: top
 objectClass: organizationalUnit
