@@ -1,4 +1,4 @@
-dn: telus
+dn: o=telus
 objectClass: top
 objectClass: dcObject
 o: telus
